@@ -1,0 +1,1 @@
+This project provides simple End-to-End test of TodoMVC web-application to proof its main concept.

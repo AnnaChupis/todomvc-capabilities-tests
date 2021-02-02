@@ -1,29 +1,19 @@
-from selene import have, be
-from selene.support.shared import browser
-browser.config.hold_browser_open = True
+from todomvc_poc_test.pages import todomvc
+
 
 def test_CRUD():
-    browser.open('https://todomvc4tasj.herokuapp.com')
-    browser.element('#new-todo').should(be.enabled).wait_until('')
+    todomvc.open()
 
-    browser.element('#new-todo').type('a').press_enter()
-    browser.element('#new-todo').type('b').press_enter()
-    browser.element('#new-todo').type('c').press_enter()
-    browser.all('#todo-list li').should(have.exact_texts('a', 'b', 'c'))
+    todomvc.add('a','b','c')
+    todomvc.active_todos_should_be('a','b','c')
 
-    browser.all('#todo-list li').element_by(have.exact_text('b')).double_click()
-    browser.all('#todo-list li').element_by(have.css_class('editing')) \
-        .element('.edit').type(' edited').press_enter()
+    todomvc.edit('b')
 
-    browser.all('#todo-list li').element_by(have.exact_text('b edited')) \
-        .element('.toggle').click()
-    browser.element('#clear-completed').click()
-    browser.all('#todo-list li').should(have.exact_texts('a', 'c'))
+    todomvc.toggle_received_result('b edited')
+    todomvc.clear_completed()
+    todomvc.active_todos_should_be('a', 'c')
 
-    browser.all('#todo-list li').element_by(have.exact_text('c')).double_click()
-    browser.all('#todo-list li').element_by(have.css_class('editing')) \
-        .element('.edit').type(' to be canceled').press_escape()
+    todomvc.cancel_edit('c')
 
-    browser.all('#todo-list li').element_by(have.exact_text('c')) \
-        .element('.destroy').click()
-    browser.all('#todo-list li').should(have.exact_texts('a'))
+    todomvc.delete('c')
+    todomvc.active_todos_should_be('a')

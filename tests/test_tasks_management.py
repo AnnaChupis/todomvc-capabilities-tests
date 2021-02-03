@@ -1,19 +1,19 @@
-from todomvc_poc_test.pages import todomvc
+from todomvc_poc_test.model import todomvc
 
 
-def test_CRUD():
+def test_crud():
     todomvc.open()
 
     todomvc.add('a','b','c')
-    todomvc.active_todos_should_be('a','b','c')
+    todomvc.should_have('a','b','c')
 
-    todomvc.edit('b')
+    todomvc.edit('b','b edited')
 
-    todomvc.toggle_received_result('b edited')
+    todomvc.toggle('b edited')
     todomvc.clear_completed()
-    todomvc.active_todos_should_be('a', 'c')
+    todomvc.should_have('a', 'c')
 
-    todomvc.cancel_edit('c')
+    todomvc.cancel_edit('c','c edited')
 
     todomvc.delete('c')
-    todomvc.active_todos_should_be('a')
+    todomvc.should_have('a')

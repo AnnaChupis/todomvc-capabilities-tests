@@ -53,8 +53,8 @@ def test_active_to_complete_transfering():
 
     todomvc.toggle('a')
 
-    todomvc.should_be_complete('a')
-    todomvc.should_be_active('b','c')
+    todomvc.should_have_complete('a')
+    todomvc.should_have_active('b','c')
     todomvc.should_have_items_left(2)
 
 
@@ -64,8 +64,8 @@ def test_complete_to_active_transfering():
 
     todomvc.toggle('a')
 
-    todomvc.should_be_complete()
-    todomvc.should_be_active('a','b','c')
+    todomvc.should_have_complete()
+    todomvc.should_have_active('a','b','c')
     todomvc.should_have_items_left(3)
 
 
@@ -74,8 +74,8 @@ def test_completing_all():
 
     todomvc.toggle_all()
 
-    todomvc.should_be_complete('a','b','c')
-    todomvc.should_be_active()
+    todomvc.should_have_complete('a','b','c')
+    todomvc.should_have_active()
     todomvc.should_have_items_left(0)
 
 
@@ -85,8 +85,8 @@ def test_activating_all():
 
     todomvc.toggle_all()
 
-    todomvc.should_be_complete()
-    todomvc.should_be_active('a','b','c')
+    todomvc.should_have_complete()
+    todomvc.should_have_active('a','b','c')
     todomvc.should_have_items_left(3)
 
 

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "todomvc_tests"
+name = "todomvc_poc_test"
 version = "0.1.0"
 description = ""
 authors = ["AnnaChupis <rf2@ukr.net>"]

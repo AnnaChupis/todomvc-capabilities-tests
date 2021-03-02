@@ -25,14 +25,14 @@ class TodoMvcPage:
         self.add(*todos)
 
 
-    def start_editing(self, todo: str, new_text: str):
+    def rewrite_selected(self, todo: str, new_text: str):
         self.todo_list.element_by(have.exact_text(todo)).double_click()
         return self.todo_list.element_by(have.css_class('editing')).element('.edit'). \
         perform(command.js.set_value(new_text))
 
 
     def edit(self, todo: str, new_text: str, key=Keys.ENTER):
-        self.start_editing(todo, new_text).press(key)
+        self.rewrite_selected(todo,new_text).press(key)
 
 
     def toggle(self, todo: str):
@@ -48,7 +48,7 @@ class TodoMvcPage:
 
 
     def cancel_edit(self, todo: str, new_text: str):
-        self.start_editing(todo, new_text).press_escape()
+        self.rewrite_selected(todo,new_text).press_escape()
 
 
     def delete(self, *todos: str):

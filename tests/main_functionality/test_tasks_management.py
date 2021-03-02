@@ -1,4 +1,4 @@
-from todomvc_tests.model import todomvc
+from todomvc_poc_test.model import todomvc
 
 
 def test_crud():

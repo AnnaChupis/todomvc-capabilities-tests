@@ -1,6 +1,6 @@
 from selenium.webdriver.common.keys import Keys
 
-from todomvc_poc_test.model import todomvc
+from todomvc_tests.model import todomvc
 
 
 def test_adding():
@@ -48,7 +48,7 @@ def test_cancel_editing():
     todomvc.should_have('a','b','c')
 
 
-def test_active_to_complete_transfering():
+def test_completing():
     todomvc.given_opened_with('a', 'b', 'c')
 
     todomvc.toggle('a')
@@ -58,7 +58,7 @@ def test_active_to_complete_transfering():
     todomvc.should_have_items_left(2)
 
 
-def test_complete_to_active_transfering():
+def test_activating():
     todomvc.given_opened_with('a', 'b', 'c')
     todomvc.toggle('a')
 
